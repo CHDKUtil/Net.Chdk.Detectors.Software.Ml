@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Detectors.Software.Binary;
-using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
@@ -36,13 +35,6 @@ namespace Net.Chdk.Detectors.Software.Ml
             return new Version(date.Year, date.Month, date.Day);
         }
 
-        protected override SoftwareCameraInfo GetCamera(string[] strings)
-        {
-            var platform = GetPlatform(strings);
-            var revision = GetRevision(strings);
-            return GetCamera(platform, revision);
-        }
-
         protected override DateTime? GetCreationDate(string[] strings)
         {
             var builtStr = TrimStart(strings[4], "Built on : ");
@@ -62,12 +54,12 @@ namespace Net.Chdk.Detectors.Software.Ml
             return CultureInfo.GetCultureInfo("en");
         }
 
-        private static string GetPlatform(string[] strings)
+        protected override string GetPlatform(string[] strings)
         {
             return TrimStart(strings[1], "Camera   : ");
         }
 
-        private static string GetRevision(string[] strings)
+        protected override string GetRevision(string[] strings)
         {
             return TrimStart(strings[2], "Firmware : ");
         }
