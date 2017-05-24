@@ -30,7 +30,7 @@ namespace Net.Chdk.Detectors.Software.Ml
                 return null;
             var split = versionStr.Split('.');
             DateTime date;
-            if (!DateTime.TryParse(split[0], out date))
+            if (!DateTime.TryParse(split[0], CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
                 return null;
             return new Version(date.Year, date.Month, date.Day);
         }
@@ -44,7 +44,7 @@ namespace Net.Chdk.Detectors.Software.Ml
             if (index > 0)
                 builtStr = builtStr.Substring(0, index);
             DateTime date;
-            if (!DateTime.TryParse(builtStr, out date))
+            if (!DateTime.TryParse(builtStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
                 return null;
             return date;
         }
