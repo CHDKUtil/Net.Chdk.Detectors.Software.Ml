@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetaMlSoftwareDetector.cs" />
     <Compile Include="MlProductDetector.cs" />
+    <Compile Include="NightlyMlSoftwareDetector.cs" />
     <Compile Include="MlSoftwareDetector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCollectionExtensions.cs" />

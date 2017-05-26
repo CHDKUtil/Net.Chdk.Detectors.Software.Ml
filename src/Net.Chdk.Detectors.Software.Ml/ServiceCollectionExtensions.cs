@@ -4,10 +4,16 @@ namespace Net.Chdk.Detectors.Software.Ml
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddMlSoftwareDetector(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddNightlyMlSoftwareDetector(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IProductBinarySoftwareDetector, MlSoftwareDetector>();
+                .AddSingleton<IProductBinarySoftwareDetector, NightlyMlSoftwareDetector>();
+        }
+
+        public static IServiceCollection AddBetaMlSoftwareDetector(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<IProductBinarySoftwareDetector, BetaMlSoftwareDetector>();
         }
 
         public static IServiceCollection AddMlProductDetector(this IServiceCollection serviceCollection)

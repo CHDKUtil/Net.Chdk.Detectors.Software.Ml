@@ -3,31 +3,21 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
-using System.Linq;
 
 namespace Net.Chdk.Detectors.Software.Ml
 {
-    sealed class MlSoftwareDetector : ProductBinarySoftwareDetector
+    abstract class MlSoftwareDetector : ProductBinarySoftwareDetector
     {
-        public MlSoftwareDetector(ISourceProvider sourceProvider)
+        protected MlSoftwareDetector(ISourceProvider sourceProvider)
             : base(sourceProvider)
         {
         }
 
-        public override string ProductName => "ML";
+        public sealed override string ProductName => "ML";
 
-        protected override string[] Strings => new[]
+        protected sealed override Version GetProductVersion(string[] strings)
         {
-            "Magic Lantern "
-        };
-
-        protected override int StringCount => 6;
-
-        protected override char SeparatorChar => '\n';
-
-        protected override Version GetProductVersion(string[] strings)
-        {
-            var split = strings[0].Split('.');
+            var split = GetVersionString(strings).Split('.');
             if (split.Length < 3)
                 return null;
             var versionStr = split[split.Length - 2];
@@ -37,59 +27,32 @@ namespace Net.Chdk.Detectors.Software.Ml
             return new Version(date.Year, date.Month, date.Day);
         }
 
-        protected override DateTime? GetCreationDate(string[] strings)
+        protected sealed override DateTime? GetCreationDate(string[] strings)
         {
-            var builtStr = GetValue(strings, 1, "Built on ");
-            if (builtStr == null)
-                return null;
-            var index = builtStr.IndexOf(" by ");
-            if (index > 0)
-                builtStr = builtStr.Substring(0, index);
+            var dateStr = GetCreationDateString(strings);
             DateTime date;
-            if (!DateTime.TryParse(builtStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
+            if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
                 return null;
             return date;
         }
 
-        protected override CultureInfo GetLanguage(string[] strings)
+        protected sealed override SoftwareBuildInfo GetBuild(string[] strings)
         {
-            return CultureInfo.GetCultureInfo("en");
-        }
-
-        protected override string GetPlatform(string[] strings)
-        {
-            return GetValue(strings, 1, "Camera");
-        }
-
-        protected override string GetRevision(string[] strings)
-        {
-            return GetValue(strings, 2, "Firmware");
-        }
-
-        protected override SoftwareBuildInfo GetBuild(string[] strings)
-        {
-            var value = GetValue(strings, 3, "Changeset")
-                ?? GetValue(strings, 1, "Mercurial changeset");
-            var split = value?.Split(' ');
-            var split2 = split?[0].Split('+');
-            if (split2 == null)
-                return null;
-
             return new SoftwareBuildInfo
             {
                 Name = string.Empty,
                 Status = string.Empty,
-                Changeset = split2[0]
+                Changeset = GetChangeset(strings)
             };
         }
 
-        private static string GetValue(string[] strings, int skip, string prefix)
+        protected sealed override CultureInfo GetLanguage(string[] strings)
         {
-            return strings
-                .Skip(skip)
-                .FirstOrDefault(s => s.StartsWith(prefix))
-                ?.TrimStart(prefix)
-                ?.TrimStart(':', ' ');
+            return CultureInfo.GetCultureInfo("en");
         }
+
+        protected abstract string GetVersionString(string[] strings);
+        protected abstract string GetCreationDateString(string[] strings);
+        protected abstract string GetChangeset(string[] strings);
     }
 }
