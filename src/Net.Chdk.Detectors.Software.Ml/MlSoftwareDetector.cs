@@ -2,6 +2,7 @@
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Net.Chdk.Detectors.Software.Ml
 {
@@ -19,25 +20,25 @@ namespace Net.Chdk.Detectors.Software.Ml
             "Magic Lantern "
         };
 
-        protected override int StringCount => 5;
+        protected override int StringCount => 6;
 
         protected override char SeparatorChar => '\n';
 
         protected override Version GetProductVersion(string[] strings)
         {
-            var versionStr = strings[0].TrimStart("Nightly.");
-            if (versionStr == null)
+            var split = strings[0].Split('.');
+            if (split.Length < 3)
                 return null;
-            var split = versionStr.Split('.');
+            var versionStr = split[split.Length - 2];
             DateTime date;
-            if (!DateTime.TryParse(split[0], CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
+            if (!DateTime.TryParse(versionStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
                 return null;
             return new Version(date.Year, date.Month, date.Day);
         }
 
         protected override DateTime? GetCreationDate(string[] strings)
         {
-            var builtStr = strings[4].TrimStart("Built on : ");
+            var builtStr = GetValue(strings, 1, "Built on ");
             if (builtStr == null)
                 return null;
             var index = builtStr.IndexOf(" by ");
@@ -56,12 +57,21 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override string GetPlatform(string[] strings)
         {
-            return strings[1].TrimStart("Camera   : ");
+            return GetValue(strings, 1, "Camera");
         }
 
         protected override string GetRevision(string[] strings)
         {
-            return strings[2].TrimStart("Firmware : ");
+            return GetValue(strings, 2, "Firmware");
+        }
+
+        private static string GetValue(string[] strings, int skip, string prefix)
+        {
+            return strings
+                .Skip(skip)
+                .FirstOrDefault(s => s.StartsWith(prefix))
+                ?.TrimStart(prefix)
+                ?.TrimStart(':', ' ');
         }
     }
 }
