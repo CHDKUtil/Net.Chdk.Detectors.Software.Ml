@@ -1,4 +1,5 @@
 ﻿using Net.Chdk.Detectors.Software.Binary;
+using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
@@ -63,6 +64,23 @@ namespace Net.Chdk.Detectors.Software.Ml
         protected override string GetRevision(string[] strings)
         {
             return GetValue(strings, 2, "Firmware");
+        }
+
+        protected override SoftwareBuildInfo GetBuild(string[] strings)
+        {
+            var value = GetValue(strings, 3, "Changeset")
+                ?? GetValue(strings, 1, "Mercurial changeset");
+            var split = value?.Split(' ');
+            var split2 = split?[0].Split('+');
+            if (split2 == null)
+                return null;
+
+            return new SoftwareBuildInfo
+            {
+                Name = string.Empty,
+                Status = string.Empty,
+                Changeset = split2[0]
+            };
         }
 
         private static string GetValue(string[] strings, int skip, string prefix)
