@@ -25,7 +25,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override Version GetProductVersion(string[] strings)
         {
-            var versionStr = TrimStart(strings[0], "Nightly.");
+            var versionStr = strings[0].TrimStart("Nightly.");
             if (versionStr == null)
                 return null;
             var split = versionStr.Split('.');
@@ -37,7 +37,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override DateTime? GetCreationDate(string[] strings)
         {
-            var builtStr = TrimStart(strings[4], "Built on : ");
+            var builtStr = strings[4].TrimStart("Built on : ");
             if (builtStr == null)
                 return null;
             var index = builtStr.IndexOf(" by ");
@@ -56,12 +56,12 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override string GetPlatform(string[] strings)
         {
-            return TrimStart(strings[1], "Camera   : ");
+            return strings[1].TrimStart("Camera   : ");
         }
 
         protected override string GetRevision(string[] strings)
         {
-            return TrimStart(strings[2], "Firmware : ");
+            return strings[2].TrimStart("Firmware : ");
         }
     }
 }
