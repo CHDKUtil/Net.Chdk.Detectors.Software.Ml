@@ -36,11 +36,8 @@
       <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Core">
-      <HintPath>..\..\..\Net.Chdk.Detectors.Software.Core\src\Net.Chdk.Detectors.Software.Core\bin\Debug\Net.Chdk.Detectors.Software.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Net.Chdk.Providers.Software.Core">
-      <HintPath>..\..\..\Net.Chdk.Providers.Software.Core\src\Net.Chdk.Providers.Software.Core\bin\Debug\Net.Chdk.Providers.Software.Core.dll</HintPath>
+      <HintPath>..\..\..\Net.Chdk.Providers.Software.Core\src\Net.Chdk.Providers.Software.Core\bin\Release\Net.Chdk.Providers.Software.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -72,6 +69,10 @@
     <ProjectReference Include="..\..\..\Net.Chdk.Detectors.Software.Binary\src\Net.Chdk.Detectors.Software.Binary\Net.Chdk.Detectors.Software.Binary.csproj">
       <Project>{18181475-991A-41F3-9BBE-F0F0916D8814}</Project>
       <Name>Net.Chdk.Detectors.Software.Binary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Detectors.Software.Core\src\Net.Chdk.Detectors.Software.Core\Net.Chdk.Detectors.Software.Core.csproj">
+      <Project>{d385ab93-0db5-45aa-994a-5e4b671bef40}</Project>
+      <Name>Net.Chdk.Detectors.Software.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Net.Chdk.Model.Software\src\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj">
       <Project>{7F492AD5-C9E5-4E13-9587-D0B88BA8D209}</Project>
