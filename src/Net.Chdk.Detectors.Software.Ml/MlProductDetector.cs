@@ -7,10 +7,12 @@ namespace Net.Chdk.Detectors.Software.Ml
 {
     sealed class MlProductDetector : ProductDetector
     {
-        public MlProductDetector(IBootProvider bootProvider)
-            : base(bootProvider)
+        public MlProductDetector(IBootProviderResolver bootProviderResolver)
+            : base(bootProviderResolver)
         {
         }
+
+        public override string CategoryName => "EOS";
 
         protected override string ProductName => "ML";
 
