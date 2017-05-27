@@ -41,7 +41,7 @@ namespace Net.Chdk.Detectors.Software.Ml
             return new SoftwareBuildInfo
             {
                 Name = string.Empty,
-                Status = string.Empty,
+                Status = GetStatus(strings),
                 Changeset = GetChangeset(strings)
             };
         }
@@ -53,6 +53,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected abstract string GetVersionString(string[] strings);
         protected abstract string GetCreationDateString(string[] strings);
+        protected abstract string GetStatus(string[] strings);
         protected abstract string GetChangeset(string[] strings);
     }
 }

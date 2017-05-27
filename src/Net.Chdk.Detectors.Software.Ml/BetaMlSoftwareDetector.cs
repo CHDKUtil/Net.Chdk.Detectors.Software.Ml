@@ -37,6 +37,11 @@ namespace Net.Chdk.Detectors.Software.Ml
             return GetCamera(platform, revision);
         }
 
+        protected override string GetStatus(string[] strings)
+        {
+            return "beta";
+        }
+
         protected override string GetChangeset(string[] strings)
         {
             return strings[1].Split(' ')[0];

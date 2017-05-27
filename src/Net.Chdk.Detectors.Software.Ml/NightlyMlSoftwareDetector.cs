@@ -45,6 +45,11 @@ namespace Net.Chdk.Detectors.Software.Ml
             return GetValue(strings, 2, "Firmware");
         }
 
+        protected override string GetStatus(string[] strings)
+        {
+            return string.Empty;
+        }
+
         protected override string GetChangeset(string[] strings)
         {
             var value = GetValue(strings, 3, "Changeset")
