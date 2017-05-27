@@ -3,6 +3,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Net.Chdk.Detectors.Software.Ml
 {
@@ -15,16 +16,25 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         public sealed override string ProductName => "ML";
 
-        protected sealed override Version GetProductVersion(string[] strings)
+        protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix)
         {
+            version = null;
+            versionPrefix = null;
             var split = GetVersionString(strings).Split('.');
             if (split.Length < 3)
-                return null;
+                return false;
             var versionStr = split[split.Length - 2];
             DateTime date;
             if (!DateTime.TryParse(versionStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
-                return null;
-            return new Version(date.Year, date.Month, date.Day);
+                return false;
+            version = new Version(date.Year, date.Month, date.Day);
+            versionPrefix = string.Join(".", split.Take(split.Length - 2));
+            return true;
+        }
+
+        protected override Version GetProductVersion(string[] strings)
+        {
+            throw new NotImplementedException();
         }
 
         protected sealed override DateTime? GetCreationDate(string[] strings)
