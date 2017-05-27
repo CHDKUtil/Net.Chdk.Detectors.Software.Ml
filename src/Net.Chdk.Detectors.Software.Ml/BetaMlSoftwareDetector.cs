@@ -27,6 +27,11 @@ namespace Net.Chdk.Detectors.Software.Ml
             return strings[0];
         }
 
+        protected override string GetCreator(string[] strings)
+        {
+            return "alex@thinkpad";
+        }
+
         protected override SoftwareCameraInfo GetCamera(string[] strings)
         {
             var split = strings[2].Split('.');

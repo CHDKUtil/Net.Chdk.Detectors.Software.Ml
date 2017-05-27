@@ -52,7 +52,8 @@ namespace Net.Chdk.Detectors.Software.Ml
             {
                 Name = string.Empty,
                 Status = GetStatus(strings),
-                Changeset = GetChangeset(strings)
+                Changeset = GetChangeset(strings),
+                Creator = GetCreator(strings),
             };
         }
 
@@ -65,5 +66,6 @@ namespace Net.Chdk.Detectors.Software.Ml
         protected abstract string GetCreationDateString(string[] strings);
         protected abstract string GetStatus(string[] strings);
         protected abstract string GetChangeset(string[] strings);
+        protected abstract string GetCreator(string[] strings);
     }
 }

@@ -35,6 +35,17 @@ namespace Net.Chdk.Detectors.Software.Ml
             return builtStr;
         }
 
+        protected override string GetCreator(string[] strings)
+        {
+            var builtStr = GetValue(strings, 1, "Built on ");
+            if (builtStr == null)
+                return null;
+            var index = builtStr.IndexOf(" by ");
+            if (index > 0)
+                return builtStr.Substring(index + " by ".Length);
+            return null;
+        }
+
         protected override string GetPlatform(string[] strings)
         {
             return GetValue(strings, 1, "Camera");
