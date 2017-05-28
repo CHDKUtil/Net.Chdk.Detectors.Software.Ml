@@ -10,10 +10,7 @@ namespace Net.Chdk.Detectors.Software.Ml
         {
         }
 
-        protected override string[] Strings => new[]
-        {
-            "Magic Lantern "
-        };
+        protected override string String => "Magic Lantern ";
 
         protected override int StringCount => 6;
 

@@ -10,10 +10,7 @@ namespace Net.Chdk.Detectors.Software.Ml
         {
         }
 
-        protected override string[] Strings => new[]
-        {
-            "alex@thinkpad\0"
-        };
+        protected override string String => "alex@thinkpad\0";
 
         protected override int StringCount => 3;
 
