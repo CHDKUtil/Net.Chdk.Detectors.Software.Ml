@@ -36,9 +36,6 @@
       <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Net.Chdk.Providers.Software.Core">
-      <HintPath>..\..\..\Net.Chdk.Providers.Software.Core\src\Net.Chdk.Providers.Software.Core\bin\Release\Net.Chdk.Providers.Software.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -83,6 +80,10 @@
     <ProjectReference Include="..\..\..\Net.Chdk.Providers.Boot.Core\src\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj">
       <Project>{4E4FA15A-4A88-4CAF-A8E1-FC507177EAD4}</Project>
       <Name>Net.Chdk.Providers.Boot.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Providers.Software.Core\src\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj">
+      <Project>{f763a515-bdb0-4088-8b23-15b02c094485}</Project>
+      <Name>Net.Chdk.Providers.Software.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
