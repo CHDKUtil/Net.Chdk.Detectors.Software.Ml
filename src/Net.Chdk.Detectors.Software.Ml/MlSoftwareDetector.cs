@@ -16,6 +16,8 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         public sealed override string ProductName => "ML";
 
+        protected override string CategoryName => "EOS";
+
         protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix)
         {
             version = null;
