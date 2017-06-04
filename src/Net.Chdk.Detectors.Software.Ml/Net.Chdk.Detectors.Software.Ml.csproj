@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetaMlSoftwareDetector.cs" />
+    <Compile Include="MlModuleDetector.cs" />
     <Compile Include="MlProductDetector.cs" />
     <Compile Include="NightlyMlSoftwareDetector.cs" />
     <Compile Include="MlSoftwareDetector.cs" />

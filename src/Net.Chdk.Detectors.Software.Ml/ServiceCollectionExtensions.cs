@@ -16,6 +16,12 @@ namespace Net.Chdk.Detectors.Software.Ml
                 .AddSingleton<IProductBinarySoftwareDetector, BetaMlSoftwareDetector>();
         }
 
+        public static IServiceCollection AddMlModuleDetector(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<IProductBinaryModuleDetector, MlModuleDetector>();
+        }
+
         public static IServiceCollection AddMlProductDetector(this IServiceCollection serviceCollection)
         {
             return serviceCollection
