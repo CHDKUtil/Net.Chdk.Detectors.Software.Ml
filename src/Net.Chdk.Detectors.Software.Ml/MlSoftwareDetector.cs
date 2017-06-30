@@ -17,10 +17,11 @@ namespace Net.Chdk.Detectors.Software.Ml
         public sealed override string CategoryName => "EOS";
         public sealed override string ProductName => "ML";
 
-        protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix)
+        protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
         {
             version = null;
             versionPrefix = null;
+            versionSuffix = null;
             var split = GetVersionString(strings).Split('.');
             if (split.Length < 3)
                 return false;
