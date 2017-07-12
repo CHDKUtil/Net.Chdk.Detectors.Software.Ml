@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Detectors.Software.Product;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Product;
 using System;
 using System.Globalization;
 
@@ -7,12 +8,10 @@ namespace Net.Chdk.Detectors.Software.Ml
 {
     sealed class MlProductDetector : ProductDetector
     {
-        public MlProductDetector(IBootProviderResolver bootProviderResolver)
-            : base(bootProviderResolver)
+        public MlProductDetector(IProductProvider productProvider, IBootProvider bootProvider)
+            : base(productProvider, bootProvider)
         {
         }
-
-        public override string CategoryName => "EOS";
 
         protected override string ProductName => "ML";
 
