@@ -1,12 +1,13 @@
-﻿using Net.Chdk.Providers.Software;
+﻿using Net.Chdk.Providers.Product;
+using Net.Chdk.Providers.Software;
 using System.Linq;
 
 namespace Net.Chdk.Detectors.Software.Ml
 {
     sealed class NightlyMlSoftwareDetector : MlSoftwareDetector
     {
-        public NightlyMlSoftwareDetector(ISourceProvider sourceProvider)
-            : base(sourceProvider)
+        public NightlyMlSoftwareDetector(IProductProvider productProvider, ISourceProvider sourceProvider)
+            : base(productProvider, sourceProvider)
         {
         }
 

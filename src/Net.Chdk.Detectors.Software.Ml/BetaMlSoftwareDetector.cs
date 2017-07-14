@@ -1,12 +1,13 @@
 ﻿using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 
 namespace Net.Chdk.Detectors.Software.Ml
 {
     sealed class BetaMlSoftwareDetector : MlSoftwareDetector
     {
-        public BetaMlSoftwareDetector(ISourceProvider sourceProvider)
-            : base(sourceProvider)
+        public BetaMlSoftwareDetector(IProductProvider productProvider, ISourceProvider sourceProvider)
+            : base(productProvider, sourceProvider)
         {
         }
 

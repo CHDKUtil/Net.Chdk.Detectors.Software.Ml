@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Detectors.Software.Product;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
@@ -9,12 +10,11 @@ namespace Net.Chdk.Detectors.Software.Ml
 {
     abstract class MlSoftwareDetector : ProductBinarySoftwareDetector
     {
-        protected MlSoftwareDetector(ISourceProvider sourceProvider)
-            : base(sourceProvider)
+        protected MlSoftwareDetector(IProductProvider productProvider, ISourceProvider sourceProvider)
+            : base(productProvider, sourceProvider)
         {
         }
 
-        public sealed override string CategoryName => "EOS";
         public sealed override string ProductName => "ML";
 
         protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
