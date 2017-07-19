@@ -26,8 +26,7 @@ namespace Net.Chdk.Detectors.Software.Ml
             if (split.Length < 3)
                 return false;
             var versionStr = split[split.Length - 2];
-            DateTime date;
-            if (!DateTime.TryParse(versionStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
+            if (!DateTime.TryParse(versionStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime date))
                 return false;
             version = new Version(date.Year, date.Month, date.Day);
             versionPrefix = string.Join(".", split.Take(split.Length - 2));
@@ -42,8 +41,7 @@ namespace Net.Chdk.Detectors.Software.Ml
         protected sealed override DateTime? GetCreationDate(string[] strings)
         {
             var dateStr = GetCreationDateString(strings);
-            DateTime date;
-            if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out date))
+            if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime date))
                 return null;
             return date;
         }
@@ -61,7 +59,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected sealed override CultureInfo GetLanguage(string[] strings)
         {
-            return CultureInfo.GetCultureInfo("en");
+            return new CultureInfo("en");
         }
 
         protected abstract string GetVersionString(string[] strings);
