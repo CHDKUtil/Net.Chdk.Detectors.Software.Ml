@@ -22,7 +22,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override CultureInfo GetLanguage(string rootPath)
         {
-            return new CultureInfo("en");
+            return GetCultureInfo("en");
         }
     }
 }

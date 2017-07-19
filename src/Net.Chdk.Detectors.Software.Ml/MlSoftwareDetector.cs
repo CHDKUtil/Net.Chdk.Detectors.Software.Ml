@@ -59,7 +59,7 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected sealed override CultureInfo GetLanguage(string[] strings)
         {
-            return new CultureInfo("en");
+            return GetCultureInfo("en");
         }
 
         protected abstract string GetVersionString(string[] strings);
